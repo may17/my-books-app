@@ -16,9 +16,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="table-item__table-row">
-            <td>REST und HTTP</td>
-            <td>9783864901201</td>
+          <tr
+            v-for="bookmark in bookmarks"
+            :key="bookmark.id"
+            class="table-item__table-row"
+          >
+            <td>{{ bookmark.title }}</td>
+            <td>{{ bookmark.isbn }}</td>
             <td>
               <button class="table-item__table-btn-remove">- entfernen</button>
             </td>
@@ -62,6 +66,11 @@ export default {
     return {
       books: [],
     };
+  },
+  computed: {
+    bookmarks() {
+      return this.books.filter((book) => book.isBookmarked);
+    },
   },
   async created() {
     const response = await fetch("http://localhost:3000/books");
