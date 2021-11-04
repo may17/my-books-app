@@ -5,67 +5,23 @@
     </div>
   </header>
   <main class="wrapper">
-    <section class="table-item">
-      <h2 class="table-item__hl">Meine Merkliste</h2>
-      <table class="table-item__table">
-        <thead>
-          <tr>
-            <th class="table-item__table-head-name">Name</th>
-            <th class="table-item__table-head--isbn">ISBN</th>
-            <th class="table-item__table-head--actions"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="bookmark in bookmarks"
-            :key="bookmark.id"
-            class="table-item__table-row"
-          >
-            <td>{{ bookmark.title }}</td>
-            <td>{{ bookmark.isbn }}</td>
-            <td>
-              <button class="table-item__table-btn-remove">- entfernen</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="table-item">
-      <h2 class="table-item__hl">Liste aller Bücher</h2>
-      <table class="table-item__table">
-        <thead>
-          <tr>
-            <th class="table-item__table-head-name">Name</th>
-            <th class="table-item__table-head--isbn">ISBN</th>
-            <th class="table-item__table-head--actions"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="book in books"
-            :key="book.id"
-            class="table-item__table-row"
-          >
-            <td>{{ book.title }}</td>
-            <td>{{ book.isbn }}</td>
-            <td>
-              <button class="table-item__table-btn-add">+ hinzufügen</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+    <ItemTable headline="Meine Merkliste" :rowsData="bookmarks" />
+    <ItemTable headline="Liste aller Bücher" :rowsData="books" />
   </main>
 </template>
 
 <script>
+import ItemTable from "./components/ItemTable.vue";
+
 export default {
   name: "App",
   data() {
     return {
       books: [],
     };
+  },
+  components: {
+    ItemTable,
   },
   computed: {
     bookmarks() {
