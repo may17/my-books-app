@@ -38,18 +38,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="table-item__table-row">
-            <td>Design Patterns</td>
-            <td>9780201633610</td>
+          <tr
+            v-for="book in books"
+            :key="book.id"
+            class="table-item__table-row"
+          >
+            <td>{{ book.title }}</td>
+            <td>{{ book.isbn }}</td>
             <td>
               <button class="table-item__table-btn-add">+ hinzufügen</button>
-            </td>
-          </tr>
-          <tr class="table-item__table-row">
-            <td>REST und HTTP</td>
-            <td>9783864901201</td>
-            <td>
-              <button class="table-item__table-btn-remove">- entfernen</button>
             </td>
           </tr>
         </tbody>
@@ -61,6 +58,17 @@
 <script>
 export default {
   name: "App",
+  data() {
+    return {
+      books: [],
+    };
+  },
+  async created() {
+    const response = await fetch("http://localhost:3000/books");
+    const jsonData = await response.json();
+
+    this.books = jsonData;
+  },
 };
 </script>
 
