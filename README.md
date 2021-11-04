@@ -15,5 +15,5 @@ npm run serve
 ### Starts Api Server
 
 ```
-npm run serve
+npm run api-server
 ```
