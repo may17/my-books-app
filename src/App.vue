@@ -5,7 +5,12 @@
 
       <nav class="header__link-list">
         <router-link class="header__link-item" to="/">Alle Bücher</router-link>
-        <router-link class="header__link-item" to="/about">About</router-link>
+        <router-link class="header__link-item" :to="{ name: 'AboutPage' }"
+          >About</router-link
+        >
+        <router-link class="header__link-item" :to="{ name: 'BookmarksPage' }"
+          >Merkliste</router-link
+        >
       </nav>
     </div>
   </header>
