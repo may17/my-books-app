@@ -18,7 +18,16 @@
           <td>{{ rowData.title }}</td>
           <td>{{ rowData.isbn }}</td>
           <td>
-            <button class="table-item__table-btn-remove">- entfernen</button>
+            <button
+              :class="{
+                'table-item__table-btn-remove': rowData.isBookmarked,
+                'table-item__table-btn-add': !rowData.isBookmarked,
+              }"
+              @click="bookmarkChanged(rowData)"
+            >
+              <span v-if="rowData.isBookmarked"> - entfernen </span>
+              <span v-else>- hinzufügen</span>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -29,6 +38,7 @@
 <script>
 export default {
   name: "ItemTable",
+  emits: ["bookmark-changed"],
   props: {
     headline: {
       type: String,
@@ -37,6 +47,11 @@ export default {
     rowsData: {
       type: Array,
       default: () => [],
+    },
+  },
+  methods: {
+    bookmarkChanged(rowData) {
+      this.$emit("bookmark-changed", rowData.id);
     },
   },
 };
