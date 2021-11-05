@@ -5,8 +5,16 @@
     </div>
   </header>
   <main class="wrapper">
-    <ItemTable headline="Meine Merkliste" :rowsData="bookmarks" />
-    <ItemTable headline="Liste aller Bücher" :rowsData="books" />
+    <ItemTable
+      headline="Meine Merkliste"
+      :rowsData="bookmarks"
+      @bookmarked-status-changed="handleBookmarkStatusChange"
+    />
+    <ItemTable
+      headline="Liste aller Bücher"
+      :rowsData="books"
+      @bookmarked-status-changed="handleBookmarkStatusChange"
+    />
   </main>
 </template>
 
@@ -26,6 +34,36 @@ export default {
   computed: {
     bookmarks() {
       return this.books.filter((book) => book.isBookmarked);
+    },
+  },
+  methods: {
+    async handleBookmarkStatusChange(bookId) {
+      const index = this.books.findIndex((book) => book.id === bookId);
+
+      const data = {
+        ...this.books[index],
+        isBookmarked: !this.books[index].isBookmarked,
+      };
+
+      try {
+        const response = await fetch(`http://localhost:3000/books/${bookId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+          throw Error("Not ok");
+        }
+
+        this.books[index].isBookmarked = !this.books[index].isBookmarked;
+      } catch (error) {
+        alert(
+          "Sorry es gab ein Problem. Wir konnten dein Buch nicht der Merliste hinzufügen."
+        );
+      }
     },
   },
   async created() {
@@ -91,7 +129,6 @@ body {
 }
 
 .table-item__table-row button {
-  opacity: 0;
   padding: 5px;
   transition: opacity 500ms;
   cursor: pointer;

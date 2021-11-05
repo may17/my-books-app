@@ -18,7 +18,16 @@
           <td>{{ rowData.title }}</td>
           <td>{{ rowData.isbn }}</td>
           <td>
-            <button class="table-item__table-btn-remove">- entfernen</button>
+            <button
+              :class="{
+                'table-item__table-btn-remove': rowData.isBookmarked,
+                'table-item__table-btn-add': !rowData.isBookmarked,
+              }"
+              @click="$emit('bookmarked-status-changed', rowData.id)"
+            >
+              <span v-if="rowData.isBookmarked">- entfernen</span>
+              <span v-else>+ hinzufügen</span>
+            </button>
           </td>
         </tr>
       </tbody>
