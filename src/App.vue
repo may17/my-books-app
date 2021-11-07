@@ -2,14 +2,7 @@
   <header class="header">
     <div class="wrapper wrapper--header">
       <p class="header__logo">My Books App</p>
-
-      <nav class="header__link-list">
-        <router-link class="header__link-item" to="/">Alle Bücher</router-link>
-        <router-link class="header__link-item" to="/bookmarks"
-          >Merkliste</router-link
-        >
-        <router-link class="header__link-item" to="/about">About</router-link>
-      </nav>
+      <MainNavigation />
     </div>
   </header>
   <main class="wrapper">
@@ -18,8 +11,13 @@
 </template>
 
 <script>
+import MainNavigation from "@/components/MainNavigation.vue";
+
 export default {
   name: "App",
+  components: {
+    MainNavigation,
+  },
 };
 </script>
 
