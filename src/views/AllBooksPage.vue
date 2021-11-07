@@ -1,10 +1,5 @@
 <template>
   <ItemTable
-    headline="Meine Merkliste"
-    :rowsData="bookmarks"
-    @bookmark-changed="handleBookmarkChange"
-  />
-  <ItemTable
     headline="Liste aller Bücher"
     :rowsData="books"
     @bookmark-changed="handleBookmarkChange"
@@ -23,11 +18,6 @@ export default {
   },
   components: {
     ItemTable,
-  },
-  computed: {
-    bookmarks() {
-      return this.books.filter((book) => book.isBookmarked);
-    },
   },
   methods: {
     async handleBookmarkChange(id) {
