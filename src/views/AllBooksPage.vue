@@ -57,13 +57,19 @@ export default {
          * Don't forget to send the body as serialized string,
          *
          */
-        await fetch(`http://localhost:3000/books/${id}`, {
+        const response = await fetch(`http://localhost:3000/books/${id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         });
+
+        if (!response.ok) {
+          throw new Error(
+            "An error occurred during communication with the api."
+          );
+        }
 
         /**
          * After a sucessful update of our record
