@@ -22,6 +22,7 @@
         >
           <slot :rowData="rowData" />
           <td>
+            <button class="table-item__table-btn-details">Details</button>
             <button
               :class="{
                 'table-item__table-btn-remove': rowData.isBookmarked,

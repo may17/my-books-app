@@ -83,6 +83,17 @@ body {
   padding: 5px;
   cursor: pointer;
   border-radius: 5px;
+  display: inline-block;
+}
+
+.table-item__table-btn-details {
+  color: #fff;
+  background-color: var(--primary);
+  border: 2px solid var(--primary-dark);
+}
+
+.table-item__table-btn-details:hover {
+  background-color: var(--primary-dark);
 }
 
 .table-item__table-btn-add {
