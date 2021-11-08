@@ -3,6 +3,7 @@ import AllBooksPage from "@/views/AllBooksPage.vue";
 import AboutPage from "@/views/AboutPage.vue";
 import BookmarksPage from "@/views/BookmarksPage.vue";
 import BookDetailsPage from "@/views/BookDetailsPage.vue";
+import CreateBook from "@/views/CreateBook.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: "/books/:id",
     name: "BookDetailsPage",
     component: BookDetailsPage,
+  },
+  {
+    path: "/create-book",
+    name: "CreateBook",
+    component: CreateBook,
   },
 ];
 
