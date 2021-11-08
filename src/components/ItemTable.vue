@@ -22,7 +22,16 @@
         >
           <slot :rowData="rowData" />
           <td>
-            <button class="table-item__table-btn-details">Details</button>
+            <router-link
+              class="header__link-item"
+              custom
+              v-slot="{ navigate }"
+              :to="`/books/${rowData.id}`"
+            >
+              <button @click="navigate" class="table-item__table-btn-details">
+                Detail
+              </button>
+            </router-link>
             <button
               :class="{
                 'table-item__table-btn-remove': rowData.isBookmarked,

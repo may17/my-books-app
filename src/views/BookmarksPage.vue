@@ -16,7 +16,7 @@
 import AllBooksPage from "@/views/AllBooksPage.vue";
 
 export default {
-  name: "BookMarksPage",
+  name: "BookmarksPage",
   extends: AllBooksPage,
   data() {
     return {
