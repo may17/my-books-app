@@ -4,19 +4,23 @@
     <table class="table-item__table">
       <thead>
         <tr>
-          <th class="table-item__table-head-name">Name</th>
-          <th class="table-item__table-head--isbn">ISBN</th>
-          <th class="table-item__table-head--actions"></th>
+          <th
+            v-for="(name, index) in tableHead"
+            :key="index"
+            :class="`table-item__table-head-${name.toLowerCase()}`"
+          >
+            {{ name }}
+          </th>
+          <th>&nbsp;</th>
         </tr>
       </thead>
       <tbody>
         <tr
-          v-for="rowData in rowsData"
+          v-for="rowData in tableBody"
           :key="rowData.id"
           class="table-item__table-row"
         >
-          <td>{{ rowData.title }}</td>
-          <td>{{ rowData.isbn }}</td>
+          <slot :rowData="rowData" />
           <td>
             <button
               :class="{
@@ -26,7 +30,7 @@
               @click="bookmarkChanged(rowData)"
             >
               <span v-if="rowData.isBookmarked"> - entfernen </span>
-              <span v-else>- hinzufügen</span>
+              <span v-else>+ hinzufügen</span>
             </button>
           </td>
         </tr>
@@ -44,7 +48,11 @@ export default {
       type: String,
       required: true,
     },
-    rowsData: {
+    tableHead: {
+      type: Array,
+      default: () => [],
+    },
+    tableBody: {
       type: Array,
       default: () => [],
     },

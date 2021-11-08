@@ -1,9 +1,17 @@
 <template>
   <ItemTable
     headline="Liste aller Bücher"
-    :rowsData="books"
+    :tableHead="tableHead"
+    :tableBody="books"
     @bookmark-changed="handleBookmarkChange"
-  />
+  >
+    <template v-slot:default="{ rowData }">
+      <td>{{ rowData.title }}</td>
+      <td>{{ rowData.author }}</td>
+      <td>{{ rowData.isbn }}</td>
+      <td>{{ rowData.numPages }}</td>
+    </template>
+  </ItemTable>
 </template>
 
 <script>
@@ -13,6 +21,7 @@ export default {
   name: "AllBooksPage",
   data() {
     return {
+      tableHead: ["Name", "Author", "ISBN", "Number of Pages"],
       books: [],
     };
   },

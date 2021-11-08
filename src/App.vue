@@ -79,18 +79,6 @@ body {
   width: 100%;
 }
 
-.table-item__table-head-name {
-  width: 65%;
-}
-
-.table-item__table-head-isbn {
-  width: 20%;
-}
-
-.table-item__table-head-actions {
-  width: 15%;
-}
-
 .table-item__table-row button {
   padding: 5px;
   cursor: pointer;
